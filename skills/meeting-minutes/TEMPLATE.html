@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Minutes Template</title>
+<style>
+  :root {
+    --bg-page: #C9C6BB;
+    --bg-card: #F4F1EA;
+    --bg-clay: #CC785C;
+    --ink: #1A1916;
+    --muted: #74716A;
+    --clay: #CC785C;
+    --clay-deep: #B0563A;
+    --line: rgba(26,25,22,.14);
+    --line-cream: rgba(244,241,234,.28);
+    --serif: Georgia, "Times New Roman", "Songti SC", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-page);
+    font-family: var(--sans);
+    color: var(--ink);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 44px; padding: 48px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 1080px; height: 1440px;
+    background: var(--bg-card);
+    position: relative; overflow: hidden;
+    padding: 96px 92px 84px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 24px 70px rgba(0,0,0,.22);
+  }
+
+  /* ── Spark icon ──────────────── */
+  .spark {
+    display: inline-block; width: 30px; height: 30px;
+    position: relative; flex: none;
+  }
+  .spark::before, .spark::after {
+    content: ""; position: absolute; inset: 0; background: var(--clay);
+  }
+  .spark::before {
+    clip-path: polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
+  }
+  .spark::after {
+    transform: rotate(45deg) scale(.62);
+    clip-path: polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
+  }
+
+  /* ── Typography ──────────────── */
+  .eyebrow {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 20px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600;
+  }
+  .eyebrow .tag { display: flex; align-items: center; gap: 16px; }
+  .num {
+    font-family: var(--serif); font-style: italic;
+    letter-spacing: 0; font-size: 22px; color: var(--clay-deep);
+  }
+
+  .headline {
+    font-weight: 700; line-height: 1.12; letter-spacing: -.01em; margin-top: 40px;
+  }
+  .h-xl { font-size: 96px; }
+  .h-lg { font-size: 62px; }
+  .h-md { font-size: 48px; }
+
+  .sub {
+    font-size: 30px; color: var(--muted); line-height: 1.5;
+    margin-top: 26px; font-weight: 400;
+  }
+
+  .rule {
+    height: 1px; background: var(--line); width: 100%;
+  }
+
+  .body {
+    flex: 1; display: flex; flex-direction: column; justify-content: flex-start;
+  }
+
+  /* ── List items ──────────────── */
+  .list { display: flex; flex-direction: column; gap: 24px; }
+
+  .item { display: flex; gap: 22px; align-items: flex-start; }
+  .item .k {
+    flex: none; font-family: var(--serif); font-size: 24px;
+    color: var(--clay-deep); font-style: italic;
+    min-width: 0; margin-top: 6px;
+  }
+  .dot {
+    flex: none; width: 12px; height: 12px;
+    background: var(--clay); margin-top: 14px; border-radius: 1px;
+  }
+  .item .t { font-size: 30px; line-height: 1.46; color: var(--ink); }
+  .item .t b { font-weight: 700; }
+  .item .t .g { color: var(--muted); }
+  .en { font-family: var(--serif); font-style: italic; }
+
+  /* ── Footer ──────────────────── */
+  .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 19px; color: var(--muted); letter-spacing: .04em;
+  }
+  .foot .brand {
+    font-weight: 700; color: var(--ink);
+    letter-spacing: .16em; text-transform: uppercase; font-size: 18px;
+  }
+
+  /* ── Clay (inverted) variant ─── */
+  .card.clay { background: var(--bg-clay); color: #F7F2EC; }
+  .card.clay .eyebrow,
+  .card.clay .sub,
+  .card.clay .foot,
+  .card.clay .num { color: rgba(247,242,236,.78); }
+  .card.clay .num { font-style: italic; }
+  .card.clay .rule { background: var(--line-cream); }
+  .card.clay .foot .brand { color: #fff; }
+  .card.clay .spark::before,
+  .card.clay .spark::after { background: #F7F2EC; }
+  .card.clay .item .k { color: #FBE7DB; }
+  .card.clay .dot { background: #F7F2EC; }
+  .card.clay .item .t { color: #FBEFE7; }
+  .card.clay .item .t .g { color: rgba(251,239,231,.72); }
+
+  /* ── Cover card specific ─────── */
+  .cover .body { justify-content: flex-end; }
+  .cover .kicker {
+    font-size: 26px; letter-spacing: .12em; font-weight: 600;
+    color: rgba(247,242,236,.85); margin-bottom: 28px;
+  }
+  .cover .big {
+    font-size: 130px; line-height: 1.02; font-weight: 700;
+    letter-spacing: -.02em;
+  }
+  .cover .big .ser {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+  }
+  .cover .cap {
+    font-size: 32px; line-height: 1.5;
+    color: rgba(247,242,236,.9); margin-top: 38px; max-width: 760px;
+  }
+  .cover .meta {
+    margin-top: 54px; display: flex; gap: 48px;
+    font-size: 22px; color: rgba(247,242,236,.85);
+  }
+  .cover .meta span b {
+    display: block; font-family: var(--serif); font-style: italic;
+    font-size: 30px; color: #fff; margin-top: 6px; letter-spacing: 0;
+  }
+
+  /* ── Decision highlight ──────── */
+  .decision {
+    background: rgba(204,120,92,.08); border-left: 4px solid var(--clay);
+    border-radius: 0 8px 8px 0; padding: 20px 28px; margin-top: 20px;
+  }
+  .decision .t { font-size: 28px; line-height: 1.5; }
+
+  /* ── Action item ─────────────── */
+  .action {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .action:last-child { border-bottom: none; }
+  .action .who {
+    flex: none; font-size: 22px; font-weight: 700;
+    color: var(--clay-deep); min-width: 100px;
+  }
+  .action .what { font-size: 26px; line-height: 1.45; color: var(--ink); }
+
+  @media print {
+    body { background: #fff; gap: 0; padding: 0; }
+    .card { box-shadow: none; break-after: page; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PATTERN 1: COVER CARD (clay background)                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="card clay cover">
+  <div class="eyebrow">
+    <div class="tag"><span class="spark"></span><span>COMPANY · PROJECT</span></div>
+    <span class="num">01 / 0N</span>
+  </div>
+  <div class="body">
+    <div class="kicker">会议类型 · 日期</div>
+    <div class="big">核心主题<br>一句话<span class="ser">概括</span></div>
+    <div class="cap">一句话描述会议背景和目的。用"我"开头——今天我和谁开了什么会。</div>
+    <div class="meta">
+      <span>日期<b>YYYY.MM.DD</b></span>
+      <span>张数<b>N cards</b></span>
+      <span>主题<b>关键词</b></span>
+    </div>
+  </div>
+  <div class="rule" style="margin:40px 0 22px"></div>
+  <div class="foot"><span class="brand">COMPANY NAME</span><span>Meeting Notes</span></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PATTERN 2: STANDARD CONTENT CARD (cream background)     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="card">
+  <div class="eyebrow">
+    <!-- TAG names the INFORMATION SOURCE, not the topic -->
+    <div class="tag"><span class="spark"></span><span>信息来源 · 谁告诉我的</span></div>
+    <span class="num">0X / 0N</span>
+  </div>
+  <h1 class="headline h-lg">卡片标题</h1>
+  <div class="sub">副标题——用"我"补充背景</div>
+  <div class="rule" style="margin:46px 0"></div>
+  <div class="body">
+    <div class="list">
+
+      <!-- Pattern A: Dot + text -->
+      <div class="item">
+        <span class="dot"></span>
+        <div class="t"><b>关键词：</b>用"我"叙述的信息要点。</div>
+      </div>
+
+      <!-- Pattern B: Label + text (for key-value info) -->
+      <div class="item">
+        <span class="k">标签</span>
+        <div class="t">对应的信息内容。<span class="g">灰色补充说明。</span></div>
+      </div>
+
+      <!-- Pattern C: Named source + text -->
+      <div class="item">
+        <span class="k">名字</span>
+        <div class="t">关于这个人的信息，role, 职责范围。</div>
+      </div>
+
+    </div>
+
+    <!-- Optional: Decision/insight callout -->
+    <div class="decision">
+      <div class="t"><b>💡 关键认知：</b>值得单独强调的洞察。</div>
+    </div>
+  </div>
+  <div class="rule" style="margin-bottom:22px"></div>
+  <div class="foot"><span class="brand">COMPANY</span><span>Section Label</span></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PATTERN 3: CLAY CONTENT CARD (inverted, for emphasis)   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="card clay">
+  <div class="eyebrow">
+    <div class="tag"><span class="spark"></span><span>信息来源 · 重点</span></div>
+    <span class="num">0X / 0N</span>
+  </div>
+  <h1 class="headline h-lg">重点卡片标题</h1>
+  <div class="sub">Clay 背景用于核心洞察、关键决策或下一步行动。</div>
+  <div class="rule" style="margin:46px 0"></div>
+  <div class="body">
+    <div class="list">
+      <div class="item">
+        <span class="dot"></span>
+        <div class="t">重点信息内容。</div>
+      </div>
+    </div>
+  </div>
+  <div class="rule" style="margin-bottom:22px"></div>
+  <div class="foot"><span class="brand">COMPANY</span><span>Section</span></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PATTERN 4: ACTION ITEMS CARD                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="card">
+  <div class="eyebrow">
+    <div class="tag"><span class="spark"></span><span>我的下一步</span></div>
+    <span class="num">0N / 0N</span>
+  </div>
+  <h1 class="headline h-lg">接下来怎么走</h1>
+  <div class="sub">会后我要做什么，什么时候交付。</div>
+  <div class="rule" style="margin:46px 0"></div>
+  <div class="body">
+    <div class="list">
+      <div class="item">
+        <span class="k">事项</span>
+        <div class="t">具体行动描述，含时间节点和交付物。</div>
+      </div>
+      <div class="item">
+        <span class="k">事项</span>
+        <div class="t">具体行动描述。</div>
+      </div>
+    </div>
+  </div>
+  <div class="rule" style="margin-bottom:22px"></div>
+  <div class="foot"><span class="brand">COMPANY</span><span>Next Steps</span></div>
+</section>
+
+</body>
+</html>

@@ -40,8 +40,7 @@
         "./skills/web-artifacts-builder",
         "./skills/webapp-testing"
       ]
-    }
-    ,
+    },
     {
       "name": "claude-api",
       "description": "Claude API and SDK documentation skill for building LLM-powered applications",
@@ -49,6 +48,20 @@
       "strict": false,
       "skills": [
         "./skills/claude-api"
+      ]
+    },
+    {
+      "name": "joran-skills",
+      "description": "Original skills by JORAN 觉然: meeting minutes to infographic cards, Claude Code / WeChat conversation showcases, daily session recap, phone-to-Mac remote terminal (Pocket), and AI coding token usage.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/meeting-minutes",
+        "./skills/conversation-showcase",
+        "./skills/wechat-showcase",
+        "./skills/wrap-up",
+        "./skills/pocket",
+        "./skills/vibe-usage"
       ]
     }
   ]

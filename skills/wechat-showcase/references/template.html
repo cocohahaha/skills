@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{--bg:#e8e6dc;--card-bg:#f5f4ed;--surface-white:#fff;--border:#dedcd1;--border-strong:#c2c0b6;--accent:#d97757;--accent-light:rgba(217,119,87,.12);--text-primary:#141413;--text-secondary:#30302e;--text-muted:#87867f;--tag-bg:rgba(217,119,87,.12);--tag-text:#d97757;--shadow-card:0 2px 2px #00000003,0 4px 4px #00000005,0 16px 24px #0000000a;--card-width:1080px;--card-height:1440px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:var(--card-width);min-height:var(--card-height);background:var(--bg);font-family:'Inter',-apple-system,system-ui,sans-serif;color:var(--text-primary);-webkit-font-smoothing:antialiased}
+.card{width:100%;min-height:var(--card-height);display:flex;flex-direction:column;padding:56px}
+.header{display:flex;align-items:center;padding-bottom:32px;border-bottom:1.5px solid var(--border);margin-bottom:40px}
+.wechat-icon{width:44px;height:44px;background:#07c160;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;font-weight:700}
+.header-brand{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:500;color:var(--text-muted)}
+.spark{color:var(--accent);font-weight:700}
+.cover-tag{display:inline-block;font-size:20px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;background:var(--tag-bg);color:var(--tag-text);padding:6px 14px;border-radius:8px;margin-bottom:14px}
+.cover-title{font-size:56px;font-weight:800;line-height:1.25;margin-bottom:16px;letter-spacing:-.5px}
+.cover-subtitle{font-size:28px;color:var(--text-muted);margin-bottom:40px;font-weight:400}
+.cover-divider{width:48px;height:3px;background:var(--accent);border-radius:2px;margin:0 0 32px}
+.cover-desc{font-size:30px;line-height:1.7;color:var(--text-secondary);margin-bottom:40px}
+.cover-stats{background:var(--surface-white);border:1.5px solid var(--border);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow-card)}
+.cover-stat{display:flex;align-items:center;gap:16px;padding:18px 0;font-size:28px;border-bottom:1px solid var(--border)}
+.cover-stat:last-child{border-bottom:none}
+.cover-stat .icon{font-size:28px;width:36px;text-align:center;flex-shrink:0}
+.cover-stat .value{margin-left:auto;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent);font-size:28px}
+.page-indicator{display:flex;justify-content:center;gap:10px;padding-top:24px}
+.page-dot{width:10px;height:10px;border-radius:50%;background:var(--border-strong)}
+.page-dot.active{background:var(--accent);width:28px;border-radius:5px}
+.footer{margin-top:auto;padding-top:28px;border-top:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;gap:12px;font-size:24px;color:var(--text-muted);font-weight:500}
+.footer .spark{font-size:28px}
+.spacer{flex:1}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="wechat-icon">W</div>
+    <div class="header-brand"><span class="spark">&#10022;</span> WeChat Showcase</div>
+  </div>
+
+  <div class="cover-tag">&#128172; 友谊档案</div>
+  <div class="cover-title">我和素素的<br>聊天故事</div>
+  <div class="cover-subtitle">微信对话数据可视化</div>
+  <div class="cover-divider"></div>
+
+  <div class="cover-desc">
+    数据库已加密，以下为示例数据展示模板效果。<br>
+    解密数据库后可生成真实对话分析。
+  </div>
+
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <span class="icon">&#128172;</span>
+      <span>总消息数</span>
+      <span class="value">12,847</span>
+    </div>
+    <div class="cover-stat">
+      <span class="icon">&#128197;</span>
+      <span>活跃天数</span>
+      <span class="value">486 天</span>
+    </div>
+    <div class="cover-stat">
+      <span class="icon">&#9200;</span>
+      <span>最活跃时段</span>
+      <span class="value">22:00</span>
+    </div>
+    <div class="cover-stat">
+      <span class="icon">&#127775;</span>
+      <span>友谊持续</span>
+      <span class="value">2 年 3 月</span>
+    </div>
+    <div class="cover-stat">
+      <span class="icon">&#128140;</span>
+      <span>情感浓度</span>
+      <span class="value">78 / 100</span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="page-indicator">
+    <span class="page-dot active"></span>
+    <span class="page-dot"></span>
+    <span class="page-dot"></span>
+  </div>
+
+  <div class="footer">
+    <span class="spark">&#10022;</span>
+    <span>WeChat Showcase</span>
+  </div>
+</div>
+</body>
+</html>
